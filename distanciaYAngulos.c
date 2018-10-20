@@ -12,11 +12,14 @@ int main()
 	int n;
 	float *tamx, *tamy; //Se usan apuntadores tipo flotantes para utilizar memoria dinámica e ingresar números enteros o con decimales.
 
-	system("cls"); //Se utiliza para que siempre que se ejecute el programa, la terminal esté vacía.
-	printf("De cuantos puntos quieres el angulo y la distancia?\n");
-	printf("(Procura que no sean muchos puntos)\n"); //Para que el usuario no escriba mucho, se pone la sugerencia.
-	printf(">> ");
-	scanf("%d", &n); //Se lee cuántos puntos son los que quiere el usuario.
+	do
+	{
+		system("cls"); //Se utiliza para que siempre que se ejecute el programa, la terminal esté vacía.
+		printf("De cuantos puntos quieres el angulo y la distancia?\n");
+		printf("(Procura que no sean muchos puntos)\n"); //Para que el usuario no escriba mucho, se pone la sugerencia.
+		printf(">> ");
+		scanf("%d", &n); //Se lee cuántos puntos son los que quiere el usuario.
+	}while(n<=1);
 
 	/*Se usa memoria dinámica para usar arreglos*/
 	tamx=(float *)calloc(n, sizeof(float));
@@ -56,12 +59,13 @@ float distAng(float *x, float *y, int n) //La función recibe los parámetros po
 	}
 
 	for(int i=0; i<n-1; i++)
-		printf("d[%d] = %.4f, theta[%d] = %.4f%c", i+1, d[i], i+1, th[i], 248);
+		printf("\nd[%d] = %.4f, theta[%d] = %.4f%c", i+1, d[i], i+1, th[i], 248);
 
 	free(dx);
 	free(dy);
 	free(d);
 	free(th);
 
-	return 0;
+	puts("\n");
+	system("pause");
 }
