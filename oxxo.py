@@ -1,4 +1,4 @@
-from threading import Semaphore
+from threading import Semaphore, Thread
 from time import sleep
 import random, os
 
@@ -51,20 +51,11 @@ def clientes(despachados):
    pago.acquire()               #procediendo al pago
    tramite = randfloat(tiempo, 120)         #haciendo una varible aleatoria
    print("El cliente %d ha realizado el pago", despachados)
-   if(tramite >= tiempo):                   #si el tramite es mayor o igual a la var tiempo, saltará el mensaje
-       while(True):
-           tramites.acquire()
-            print("El cliente %d está haciendo un trámite", despachados)
-            sleep("3")
-            atendidos.append(despachados)       #se almacena el cliente despachado
-            tramites.release()
-    else:
-        while(True):
-            print("El cliente %d ha pagado", despachados)
-            atendidos.append(despachados)
-            sleep(2)
-    pago.release()
 
 os.system("clear")
 Clientes = int(input("Introducir cuantos clientes serán atendidos>> "))
 
+Thread(target = cajas).start()
+
+for i in range(1, Clientes+1):
+    Thread(target = clientes, args = [i]).start()
