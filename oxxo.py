@@ -19,6 +19,6 @@ def numClientes():
     Clientes = input("Introducir cuantos clientes seran despachados>> ")
     caja1.acquire()
     if (Clientes >= maxClientes):       #si el numero de clientes es mayor o igual al número de clientes se adquieren ambas cajas
-        print("\t El numeo de clientes es grande. Habilitando la caja 2")
+        print("\t El numeo de clientes es mayor al permitido. Habilitando la caja 2")
         caja2.acquire()
     
