@@ -6,6 +6,7 @@ import random, os
 maxClientes = 4         #maximo de clientes en UNA caja
 #Clientes = []          #clientes dados por el usuario
 atendidos = []          #auxiliar
+tiempo = 90
 
 
 #mutexes a usar
@@ -46,10 +47,18 @@ def cajas():
     caja1.release()
     pago.release()
 
-def clientes():
+def clientes(despachados):
+   pago.acquire()           #procediendo al pago
+   print("El cliente %d ha realizado el pago", despachados)
+   tramites.acquire()
+   tramite = randfloat(1, tiempo)
+   while(True):
+        if(tramite >= 5):
+            os.system("clear")
+            print("El cliente %d está realizando un trámite", despachados)
+
+
 
 
 os.system("clear")
 Clientes = int(input("Introducir cuantos clientes serán atendidos>> "))
-
-cajas()
