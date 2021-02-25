@@ -17,4 +17,5 @@ def numClientes():
     global Clientes, maxClientes
     Clientes = input("Introducir cuantos clientes seran despachados>> ")
     if (Clientes >= maxClientes):
-        
+        caja1.acquire()
+        caja2.acquire()
