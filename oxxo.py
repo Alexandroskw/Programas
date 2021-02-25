@@ -14,5 +14,7 @@ tramites = Semaphore(0)                 #Mutex por si se hace algún deposito o 
 pago = Semaphore(1)                     #Mutex de pago realizado por el cliente
 
 def numClientes():
-    global Clientes
-    Clientes = input("Introducir cuantos clientes seran despachados")
+    global Clientes, maxClientes
+    Clientes = input("Introducir cuantos clientes seran despachados>> ")
+    if (Clientes >= maxClientes):
+        
