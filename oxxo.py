@@ -48,14 +48,23 @@ def cajas():
     pago.release()
 
 def clientes(despachados):
-   pago.acquire()           #procediendo al pago
-   tramites.acquire()
-   tramite = randfloat(tiempo, 120)
+   pago.acquire()               #procediendo al pago
+   tramite = randfloat(tiempo, 120)         #haciendo una varible aleatoria
    print("El cliente %d ha realizado el pago", despachados)
-
-
-
-
+   if(tramite >= tiempo):                   #si el tramite es mayor o igual a la var tiempo, saltará el mensaje
+       while(True):
+           tramites.acquire()
+            print("El cliente %d está haciendo un trámite", despachados)
+            sleep("3")
+            atendidos.append(despachados)       #se almacena el cliente despachado
+            tramites.release()
+    else:
+        while(True):
+            print("El cliente %d ha pagado", despachados)
+            atendidos.append(despachados)
+            sleep(2)
+    pago.release()
 
 os.system("clear")
 Clientes = int(input("Introducir cuantos clientes serán atendidos>> "))
+
