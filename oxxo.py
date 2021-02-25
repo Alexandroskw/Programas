@@ -50,12 +50,6 @@ def cajas():
 def clientes(despachados):
    pago.acquire()           #procediendo al pago
    print("El cliente %d ha realizado el pago", despachados)
-   tramites.acquire()
-   tramite = randfloat(1, tiempo)
-   while(True):
-        if(tramite >= 5):
-            os.system("clear")
-            print("El cliente %d está realizando un trámite", despachados)
 
 
 
