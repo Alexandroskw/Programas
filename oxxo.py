@@ -60,5 +60,9 @@ def clientes(despachados):
             sleep(2)
     elif(realiza < 60):
         while(True):
-            
-        
+            tramites.acquire()
+            print("El cliente %d ha realizado su pago", despachados)
+            atendidos.append(despachados)
+            tramites.release()
+            sleep(2)
+    pago.release()
