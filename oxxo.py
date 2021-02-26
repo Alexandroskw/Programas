@@ -6,7 +6,7 @@ import random, os
 maxClientes = 4         #maximo de clientes en UNA caja
 #Clientes = []          #clientes dados por el usuario
 atendidos = []          #auxiliar
-tiempo = 90
+tiempo = 120
 
 
 #mutexes a usar
@@ -49,6 +49,16 @@ def cajas():
 
 def clientes(despachados):
     pago.acquire()
-    realiza = randint(1, tiempo)
+    realiza = randfloat(1, tiempo)            #haciendo un calculo aleatorio para el tiempo
     print("El cliente %d ha realizado un pedido", despachados)
-    
+    if((realiza > 60) or (realiza == tiempo)):                       #si es mayor a un minuto, entra en la condición
+        while(True):
+            tramites.acquire()              #Adquiriendo el mutex de los tramites
+            print("El cliente %d está realizando un tramite", despachados)
+            atendidos.append(despachados)       #los clientes despachados son almacenados
+            tramites.release()                  #se libera el mutex
+            sleep(2)
+    elif(realiza < 60):
+        while(True):
+            
+        
