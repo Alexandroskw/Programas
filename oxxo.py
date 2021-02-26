@@ -46,4 +46,9 @@ def cajas():
 
     caja1.release()
     pago.release()
+
+def clientes(despachados):
+    pago.acquire()
+    realiza = randint(1, tiempo)
+    print("El cliente %d ha realizado un pedido", despachados)
     
