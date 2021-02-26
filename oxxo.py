@@ -41,7 +41,7 @@ def cajas():
             os.system("clear")
             despachados = atendidos.pop(0)
             caja = atendidos.pop(0)
-            print("\La caja ha atendido al cliente %d", despachados)
+            print("\La caja ha atendido al cliente %d" % despachados)
             break
 
     caja1.release()
@@ -50,19 +50,22 @@ def cajas():
 def clientes(despachados):
     pago.acquire()
     realiza = randfloat(1, tiempo)            #haciendo un calculo aleatorio para el tiempo
-    print("El cliente %d ha realizado un pedido", despachados)
+    print("El cliente %d ha realizado un pedido" % despachados)
     if((realiza > 60) or (realiza == tiempo)):                       #si es mayor a un minuto, entra en la condición
         while(True):
             tramites.acquire()              #Adquiriendo el mutex de los tramites
-            print("El cliente %d está realizando un tramite", despachados)
+            print("El cliente %d está realizando un tramite" % despachados)
             atendidos.append(despachados)       #los clientes despachados son almacenados
             tramites.release()                  #se libera el mutex
             sleep(2)
-    elif(realiza < 60):
+    elif(realiza <= 60):
         while(True):
             tramites.acquire()
-            print("El cliente %d ha realizado su pago", despachados)
+            print("El cliente %d ha realizado su pago" % despachados)
             atendidos.append(despachados)
             tramites.release()
             sleep(2)
+    print("El cliente %d ha realizado el pago" % despachados)
     pago.release()
+
+    if(clientes == )
